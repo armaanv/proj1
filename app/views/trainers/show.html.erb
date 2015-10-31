@@ -3,11 +3,25 @@
 <p>Email: <%= @trainer.email if @trainer.email %></p>
 <% if @trainer.id == current_trainer.id %>
 	<%= button_to "Create Pokemon", new_path(id: current_trainer.id), :class => "button medium", :method => :get %>
-<% end %>
+
 <p> List of Pokemons: <br/>
 	<% @list = @trainer.pokemons%>
 	<% @list.each do |x| %>
 			<%= x.name %> (<%=x.health%>)
       <%= button_to "Damage!", damage_path(id: x.id), :class => "button medium", :method => :patch %>
+      <% if @trainer.id == current_trainer.id %>
+      	<%= button_to "Heal!", heal_path(id: x.id), :class => "button medium", :method => :patch %>
+      <% end %>
 	<% end %>
+<% end %>
+<% if @trainer.id != current_trainer.id %>
+<p> List of Pokemons: <br/>
+	<% @list = @trainer.pokemons%>
+	<% @list.each do |x| %>
+      <% if x.health > 0 %>
+			<%= x.name %> (<%=x.health%>)
+      <%= button_to "Damage!", damage_path(id: x.id), :class => "button medium", :method => :patch %>
+      <% end %>
+  <% end %>
+<% end %>
 </p>
