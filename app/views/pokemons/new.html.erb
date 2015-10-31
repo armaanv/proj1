@@ -1,0 +1,5 @@
+<h2>Create your pokemon</h2>
+<%= simple_form_for Pokemon.new, :url => pokemons_path do |p| %>
+  <%= p.input :name, label: 'The name of your pokemon', error: 'Please enter a unique name' %>
+  <%= p.button :submit, 'Create' %>
+<% end %>
