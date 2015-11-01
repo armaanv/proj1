@@ -22,7 +22,6 @@ class PokemonController < ApplicationController
 		@pokemon.health = 100
     @pokemon.level = 1
 		@pokemon.trainer = current_trainer
-    @pokemon.trainer_id = current_trainer.id
 		if @pokemon.save
 		  redirect_to trainer_path(current_trainer)
 		else
