@@ -2,7 +2,7 @@
 <p>Name: <%= @trainer.name if @trainer.name %></p>
 <p>Email: <%= @trainer.email if @trainer.email %></p>
 <% if @trainer.id == current_trainer.id %>
-	<%= button_to "Create Pokemon", new_path(id: current_trainer.id), :class => "button medium", :method => :get %>
+	<%= button_to "Create Pokemon", new_path(), :class => "button medium", :method => :get %>
 
 <p> List of Pokemons: <br/>
 	<% @list = @trainer.pokemons%>

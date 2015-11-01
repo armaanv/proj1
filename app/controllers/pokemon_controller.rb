@@ -13,14 +13,16 @@ class PokemonController < ApplicationController
     if pokemon.health <= 0
       pokemon.destroy
     end
-    redirect_to pokemon.trainer
+    redirect_to trainer_path(pokemon.trainer)
   end
 
   def create
-		@pokemon = Pokemon.create pokemon_params
+    @pokemon = Pokemon.new
+	  Pokemon.create pokemon_params
 		@pokemon.health = 100
     @pokemon.level = 1
 		@pokemon.trainer = current_trainer
+    @pokemon.trainer_id = current_trainer.id
 		if @pokemon.save
 		  redirect_to trainer_path(current_trainer)
 		else
@@ -40,6 +42,7 @@ class PokemonController < ApplicationController
     #@pokemon = Pokemon.create(params.require(:pokemon).permit(:name))
     #redirect_to trainer_path(current_trainer)
     @pokemon = Pokemon.new
+
   end
 
 	def pokemon_params
